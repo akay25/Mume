@@ -9,6 +9,29 @@
 
 .main-content {
   height: 100vh;
-  width: 100vw;
+  width: 92vw;
   padding: 4rem 2rem 2rem 2rem;
+  overflow-y: auto;
+}
+
+.content-container {
+  .content-header {
+    display: flex;
+    border: 1px solid red;
+    margin: 1rem 0 1rem 0;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+
+    .header {
+      height: 2.5rem;
+      border: 1px solid red;
+      color: white;
+      font-size: 30px;
+      font-weight: 100;
+    }
+  }
+
+  .content-body {
+    height: calc(100vh - 2.5rem - 10rem);
+    overflow-y: auto;
+  }
 }
