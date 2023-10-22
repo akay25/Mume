@@ -94,6 +94,7 @@ const isOutsideClicked = (event) => {
         </button>
       </div>
     </div>
+    <div class="layout-curved-edge"></div>
   </div>
 </template>
 
