@@ -4,11 +4,16 @@
   left: 0;
   top: 0;
   height: 100%;
-  width: 5rem;
-  padding: 0 2rem;
+  width: 7rem;
   background-color: var(--surface-card);
+}
+
+.layout-buttons-container {
+  padding: 0 2rem;
   transition: left $transitionDuration;
   display: flex;
+  height: 100%;
+  width: 5rem;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;

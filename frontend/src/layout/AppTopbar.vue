@@ -62,35 +62,37 @@ const isOutsideClicked = (event) => {
 
 <template>
   <div class="layout-topbar">
-    <router-link to="/" class="layout-topbar-logo">
-      <img :src="logoUrl" alt="logo" />
-    </router-link>
+    <div class="layout-buttons-container">
+      <router-link to="/" class="layout-topbar-logo">
+        <img :src="logoUrl" alt="logo" />
+      </router-link>
 
-    <div class="layout-topbar-menu-section-middle">
-      <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
-        <vue-feather type="home" size="20" stroke-width="1"></vue-feather>
-      </button>
-      <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
-        <vue-feather type="music" size="20" stroke-width="1"></vue-feather>
-      </button>
-      <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
-        <vue-feather type="folder" size="20" stroke-width="1"></vue-feather>
-      </button>
-      <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
-        <vue-feather type="user" size="20" stroke-width="1"></vue-feather>
-      </button>
-    </div>
+      <div class="layout-topbar-menu-section-middle">
+        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+          <vue-feather type="home" size="20" stroke-width="1"></vue-feather>
+        </button>
+        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+          <vue-feather type="music" size="20" stroke-width="1"></vue-feather>
+        </button>
+        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+          <vue-feather type="folder" size="20" stroke-width="1"></vue-feather>
+        </button>
+        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+          <vue-feather type="user" size="20" stroke-width="1"></vue-feather>
+        </button>
+      </div>
 
-    <div class="layout-topbar-menu-section-bottom" :class="topbarMenuClasses">
+      <div class="layout-topbar-menu-section-bottom" :class="topbarMenuClasses">
 
-      <button @click="onSettingsClick()" class="p-link layout-topbar-button">
-        <vue-feather type="settings" size="20" stroke-width="1"></vue-feather>
-        <span>Settings</span>
-      </button>
-      <button @click="closeMe()" class="p-link layout-topbar-button">
-        <vue-feather type="x" size="20" stroke-width="1"></vue-feather>
-        <span>Close</span>
-      </button>
+        <button @click="onSettingsClick()" class="p-link layout-topbar-button">
+          <vue-feather type="settings" size="20" stroke-width="1"></vue-feather>
+          <span>Settings</span>
+        </button>
+        <button @click="closeMe()" class="p-link layout-topbar-button">
+          <vue-feather type="x" size="20" stroke-width="1"></vue-feather>
+          <span>Close</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
