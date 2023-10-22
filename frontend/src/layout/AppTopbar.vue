@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from '@/layout/composables/layout';
 import { useRouter } from 'vue-router';
-import {CloseMe} from '@wailsjs';
+import {CloseMe, Alert} from '@wailsjs';
 
 const { layoutConfig, onMenuButtonClick } = useLayout();
 
@@ -31,8 +31,8 @@ const onSettingsClick = () => {
   router.push('/settings');
 };
 
-const onAlertClick = () => {
-  console.log("Alert button clicked");
+const onAlertClick = async () => {
+  await Alert("Welcome to Mume app", "A beautiful app for listening to music", "")
   router.push('/notifications');
 }
 

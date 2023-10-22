@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"os"
+
+	"github.com/gen2brain/beeep"
 )
 
 // App struct
@@ -29,4 +31,18 @@ func (a *App) Greet(name string) string {
 
 func (a *App) CloseMe() {
 	os.Exit(0)
+}
+
+func (a *App) Notify(title string, body string, imagePath string) {
+	err := beeep.Notify(title, body, imagePath)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func (a *App) Alert(title string, body string, imagePath string) {
+	err := beeep.Alert(title, body, imagePath)
+	if err != nil {
+		panic(err)
+	}
 }
