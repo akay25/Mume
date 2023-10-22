@@ -3,7 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from '@/layout/composables/layout';
 import { useRouter } from 'vue-router';
 
-const { layoutConfig, onMenuToggle } = useLayout();
+const { layoutConfig, onMenuButtonClick } = useLayout();
 
 const outsideClickListener = ref(null);
 const topbarMenuActive = ref(false);
@@ -21,12 +21,9 @@ const logoUrl = computed(() => {
   return `layout/images/${layoutConfig.darkTheme.value ? 'logo-white' : 'logo-dark'}.png`;
 });
 
-const onTopBarMenuButton = () => {
-  topbarMenuActive.value = !topbarMenuActive.value;
-};
 const onSettingsClick = () => {
   topbarMenuActive.value = false;
-  router.push('/documentation');
+  router.push('/settings');
 };
 const topbarMenuClasses = computed(() => {
   return {
@@ -68,22 +65,21 @@ const isOutsideClicked = (event) => {
       </router-link>
 
       <div class="layout-topbar-menu-section-middle">
-        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        <router-link to="/" class="p-link layout-menu-button layout-topbar-button">
           <vue-feather type="home" size="20" stroke-width="1"></vue-feather>
-        </button>
-        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        </router-link>
+        <router-link to="/songs" class="p-link layout-menu-button layout-topbar-button">
           <vue-feather type="music" size="20" stroke-width="1"></vue-feather>
-        </button>
-        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        </router-link>
+        <router-link to="/library" class="p-link layout-menu-button layout-topbar-button">
           <vue-feather type="folder" size="20" stroke-width="1"></vue-feather>
-        </button>
-        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        </router-link>
+        <router-link to="/profile" class="p-link layout-menu-button layout-topbar-button">
           <vue-feather type="user" size="20" stroke-width="1"></vue-feather>
-        </button>
+        </router-link>
       </div>
 
       <div class="layout-topbar-menu-section-bottom" :class="topbarMenuClasses">
-
         <button @click="onSettingsClick()" class="p-link layout-topbar-button">
           <vue-feather type="settings" size="20" stroke-width="1"></vue-feather>
           <span>Settings</span>
