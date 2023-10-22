@@ -62,7 +62,11 @@ const isOutsideClicked = (event) => {
     <app-topbar></app-topbar>
     <div class="layout-main-container">
       <div class="layout-main">
-        <router-view></router-view>
+        <router-view v-slot="{ Component, route }">
+          <transition name="slide">
+            <component class="main-content" :is="Component" :key="route.path" />
+          </transition>
+        </router-view>
       </div>
       <app-footer></app-footer>
     </div>
@@ -70,4 +74,31 @@ const isOutsideClicked = (event) => {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.60s ease-out;
+  border-radius: 2rem;
+  overflow-x: hidden;
+}
+
+.slide-enter-to {
+  position: absolute;
+  right: 0;
+}
+
+.slide-enter-from {
+  position: absolute;
+  right: -100%;
+}
+
+.slide-leave-to {
+  position: absolute;
+  left: -100%;
+}
+
+.slide-leave-from {
+  position: absolute;
+  left: 0;
+}
+</style>
