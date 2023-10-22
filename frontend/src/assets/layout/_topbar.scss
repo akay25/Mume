@@ -22,7 +22,7 @@
     width: 4rem;
     height: 4rem;
     border-radius: 12px;
-    margin-top: 12px;
+    margin-top: 36px;
     cursor: pointer;
 
     img {
@@ -42,6 +42,7 @@
     align-items: center;
     position: relative;
     color: var(--text-color-secondary);
+    background-color: var(--surface-card);
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
@@ -79,11 +80,18 @@
     }
   }
 
-  .layout-topbar-menu-bottom {
+  .layout-topbar-menu-section-middle {
+    .layout-menu-button {
+      margin-top: 0;
+    }
+  }
+
+  .layout-topbar-menu-section-bottom {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 30%;
+    height: 15%;
+    margin-bottom: 12px;
   }
 
   .layout-topbar-menu {

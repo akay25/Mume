@@ -66,21 +66,29 @@ const isOutsideClicked = (event) => {
       <img :src="logoUrl" alt="logo" />
     </router-link>
 
-    <!-- <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
-      <i class="pi pi-bars"></i>
-    </button> -->
-
-    <div class="layout-topbar-menu-bottom" :class="topbarMenuClasses">
-      <button @click="onTopBarMenuButton()" class="p-link layout-topbar-button">
-        <i class="pi pi-user"></i>
-        <span>Profile</span>
+    <div class="layout-topbar-menu-section-middle">
+      <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        <vue-feather type="home" size="20" stroke-width="1"></vue-feather>
       </button>
+      <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        <vue-feather type="music" size="20" stroke-width="1"></vue-feather>
+      </button>
+      <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        <vue-feather type="folder" size="20" stroke-width="1"></vue-feather>
+      </button>
+      <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        <vue-feather type="user" size="20" stroke-width="1"></vue-feather>
+      </button>
+    </div>
+
+    <div class="layout-topbar-menu-section-bottom" :class="topbarMenuClasses">
+
       <button @click="onSettingsClick()" class="p-link layout-topbar-button">
-        <i class="pi pi-cog"></i>
+        <vue-feather type="settings" size="20" stroke-width="1"></vue-feather>
         <span>Settings</span>
       </button>
       <button @click="closeMe()" class="p-link layout-topbar-button">
-        <i class="pi pi-times"></i>
+        <vue-feather type="x" size="20" stroke-width="1"></vue-feather>
         <span>Close</span>
       </button>
     </div>
