@@ -1,7 +1,6 @@
 .layout-main-container {
   display: flex;
   transition: margin-left $transitionDuration;
-  overflow-x: hidden;
 }
 
 .layout-main {
@@ -11,6 +10,5 @@
 .main-content {
   height: 100vh;
   width: 100vw;
-  border: 2px solid green;
   padding: 4rem 2rem 2rem 2rem;
 }
