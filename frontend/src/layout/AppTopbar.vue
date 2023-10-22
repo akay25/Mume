@@ -1,9 +1,9 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from '@/layout/composables/layout';
+import QuitButton from '@/components/QuitButton.vue';
 import { useRouter } from 'vue-router';
-import {CloseMe, Alert} from '@wailsjs';
-
+import { Alert } from '@wailsjs';
 const { layoutConfig, onMenuButtonClick } = useLayout();
 
 const outsideClickListener = ref(null);
@@ -22,12 +22,7 @@ const logoUrl = computed(() => {
   return `layout/images/logo-48x48.png`;
 });
 
-const onCloseMeClick = async () => {
-  await CloseMe();
-}
-
 const onSettingsClick = () => {
-  topbarMenuActive.value = false;
   router.push('/settings');
 };
 
@@ -99,10 +94,7 @@ const isOutsideClicked = (event) => {
           <vue-feather type="settings" size="20" stroke-width="1"></vue-feather>
           <span>Settings</span>
         </button>
-        <button @click="onCloseMeClick()" class="p-link layout-topbar-button">
-          <vue-feather type="x" size="20" stroke-width="1"></vue-feather>
-          <span>Close</span>
-        </button>
+        <quit-button />
       </div>
     </div>
     <div class="layout-curved-edge"></div>
