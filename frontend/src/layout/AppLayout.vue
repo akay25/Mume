@@ -77,14 +77,13 @@ const isOutsideClicked = (event) => {
 <style lang="scss" scoped>
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.60s ease-out;
-  border-radius: 2rem;
-  overflow-x: hidden;
+  transition: all 0.50s ease-out;
+  border-radius: 2rem 0 0 2rem;
 }
 
 .slide-enter-to {
   position: absolute;
-  right: 0;
+  right: 7rem;
 }
 
 .slide-enter-from {
@@ -94,11 +93,11 @@ const isOutsideClicked = (event) => {
 
 .slide-leave-to {
   position: absolute;
-  left: -100%;
+  left: -7rem;
 }
 
 .slide-leave-from {
   position: absolute;
-  left: 0;
+  left: 7rem;
 }
 </style>
