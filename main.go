@@ -17,10 +17,12 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "MumeWails",
-		Width:  1024,
-		Height: 768,
-		Frameless: false,
+		Title:     "MumeWails",
+		Width:     1000,
+		Height:    563,
+		MinWidth:  1000,
+		MinHeight: 563,
+		Frameless: true,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},

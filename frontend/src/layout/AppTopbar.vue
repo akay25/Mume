@@ -65,7 +65,7 @@ const isOutsideClicked = (event) => {
 
 <template>
   <div class="layout-topbar">
-    <div class="layout-buttons-container">
+    <div style="--wails-draggable:drag" class="layout-buttons-container">
       <router-link to="/" class="layout-topbar-logo">
         <img :src="logoUrl" alt="logo" />
       </router-link>
