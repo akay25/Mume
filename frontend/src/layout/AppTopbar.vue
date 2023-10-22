@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from '@/layout/composables/layout';
 import { useRouter } from 'vue-router';
+import {CloseMe} from '@wailsjs';
 
 const { layoutConfig, onMenuButtonClick } = useLayout();
 
@@ -20,6 +21,10 @@ onBeforeUnmount(() => {
 const logoUrl = computed(() => {
   return `layout/images/logo-48x48.png`;
 });
+
+const onCloseMeClick = async () => {
+  await CloseMe();
+}
 
 const onSettingsClick = () => {
   topbarMenuActive.value = false;
@@ -94,7 +99,7 @@ const isOutsideClicked = (event) => {
           <vue-feather type="settings" size="20" stroke-width="1"></vue-feather>
           <span>Settings</span>
         </button>
-        <button @click="closeMe()" class="p-link layout-topbar-button">
+        <button @click="onCloseMeClick()" class="p-link layout-topbar-button">
           <vue-feather type="x" size="20" stroke-width="1"></vue-feather>
           <span>Close</span>
         </button>
