@@ -25,6 +25,12 @@ const onSettingsClick = () => {
   topbarMenuActive.value = false;
   router.push('/settings');
 };
+
+const onAlertClick = () => {
+  console.log("Alert button clicked");
+  router.push('/notifications');
+}
+
 const topbarMenuClasses = computed(() => {
   return {
     'layout-topbar-menu-mobile-active': topbarMenuActive.value
@@ -80,6 +86,10 @@ const isOutsideClicked = (event) => {
       </div>
 
       <div class="layout-topbar-menu-section-bottom" :class="topbarMenuClasses">
+        <button @click="onAlertClick()" class="p-link layout-topbar-button">
+          <vue-feather type="bell" size="20" stroke-width="1"></vue-feather>
+          <span>Notifications</span>
+        </button>
         <button @click="onSettingsClick()" class="p-link layout-topbar-button">
           <vue-feather type="settings" size="20" stroke-width="1"></vue-feather>
           <span>Settings</span>
