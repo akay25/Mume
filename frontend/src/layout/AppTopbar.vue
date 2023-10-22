@@ -18,7 +18,7 @@ onBeforeUnmount(() => {
 });
 
 const logoUrl = computed(() => {
-  return `layout/images/${layoutConfig.darkTheme.value ? 'logo-white' : 'logo-dark'}.png`;
+  return `layout/images/logo-48x48.png`;
 });
 
 const onSettingsClick = () => {
