@@ -9,14 +9,26 @@
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "esModuleInterop": true,
+    "noImplicitAny": false,
     "lib": [
       "ESNext",
       "DOM"
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@wailsjs": [
+        "./wailsjs/go/backend/App.js"
+      ]
+    }
   },
+  "exclude": [
+    "./wailsjs/go/backend/App.js"
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
