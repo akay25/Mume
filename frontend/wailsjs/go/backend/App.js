@@ -14,10 +14,18 @@ export function GetConfig() {
   return window['go']['backend']['App']['GetConfig']();
 }
 
+export function GetLibraryPath() {
+  return window['go']['backend']['App']['GetLibraryPath']();
+}
+
 export function Greet(arg1) {
   return window['go']['backend']['App']['Greet'](arg1);
 }
 
 export function Notify(arg1, arg2, arg3) {
   return window['go']['backend']['App']['Notify'](arg1, arg2, arg3);
+}
+
+export function SetLibraryPath(arg1) {
+  return window['go']['backend']['App']['SetLibraryPath'](arg1);
 }

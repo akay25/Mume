@@ -8,6 +8,10 @@ export function CloseMe():Promise<void>;
 
 export function GetConfig():Promise<backend.Config>;
 
+export function GetLibraryPath():Promise<string>;
+
 export function Greet(arg1:string):Promise<string>;
 
 export function Notify(arg1:string,arg2:string,arg3:string):Promise<void>;
+
+export function SetLibraryPath(arg1:string):Promise<void>;
