@@ -13,17 +13,23 @@ import (
 // TODO: Setup default config values here
 const APPLICATION_NAME = "Mume"
 const CONFIG_FILE_LOCATION = "config.json"
+const MIN_WINDOW_WIDTH = 1000
+const MIN_WINDOW_HEIGHT = 563
 
 // Config setup
 type Config struct {
-	LibraryPath string `json:"LibraryPath"`
-	LogLevel    string `json:"LogLevel"`
+	LibraryPath  string `json:"LibraryPath"`
+	LogLevel     string `json:"LogLevel"`
+	WindowWidth  int    `json:"WindowWidth"`
+	WindowHeight int    `json:"WindowHeight"`
 }
 
 func DefaultConfig() Config {
 	return Config{
-		LibraryPath: "",
-		LogLevel:    "debug",
+		LibraryPath:  "",
+		LogLevel:     "debug",
+		WindowWidth:  1000,
+		WindowHeight: 563,
 	}
 }
 

@@ -50,11 +50,11 @@ func main() {
 
 	// Create application with options
 	err = wails.Run(&options.App{
-		Title:     "Mume",
-		Width:     1000,
-		Height:    563,
-		MinWidth:  1000,
-		MinHeight: 563,
+		Title:     backend.APPLICATION_NAME,
+		Width:     cfg.WindowWidth,
+		Height:    cfg.WindowHeight,
+		MinWidth:  backend.MIN_WINDOW_WIDTH,
+		MinHeight: backend.MIN_WINDOW_HEIGHT,
 		Frameless: true,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
