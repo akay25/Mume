@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/fs"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -17,6 +18,7 @@ const MIN_WINDOW_WIDTH = 1000
 const MIN_WINDOW_HEIGHT = 563
 
 var CONFIG_FILE_PATH = fmt.Sprintf("%s/%s", APPLICATION_NAME, CONFIG_FILE_LOCATION)
+var logger = Logger
 
 // Config setup
 type Config struct {
@@ -53,7 +55,11 @@ func NewConfigStore() (*ConfigStore, error) {
 func (s *ConfigStore) GetConfig() (Config, error) {
 	_, err := os.Stat(s.configPath)
 	if os.IsNotExist(err) {
-		return DefaultConfig(), nil
+		logger.Debugf("No config file or dir (%s) exists, loading default config", s.configPath)
+		defaultConfig := DefaultConfig()
+		// Save this default config in s.configPath
+		s.UpdateConfig(defaultConfig)
+		return defaultConfig, nil
 	}
 
 	dir, fileName := filepath.Split(s.configPath)
@@ -63,18 +69,37 @@ func (s *ConfigStore) GetConfig() (Config, error) {
 
 	buf, err := fs.ReadFile(os.DirFS(dir), fileName)
 	if err != nil {
-		return Config{}, fmt.Errorf("could not read the configuration file: %w", err)
+		return Config{}, fmt.Errorf("failed to read the configuration file: %w", err)
 	}
 
 	if len(buf) == 0 {
+		logger.Debugf("No config file or dir (%s) exists, loading default config", s.configPath)
 		return DefaultConfig(), nil
 	}
 
 	cfg := Config{}
 	if err := json.Unmarshal(buf, &cfg); err != nil {
-		return Config{}, fmt.Errorf("configuration file does not have a valid format: %w", err)
+		return Config{}, err
 	}
 
 	return cfg, nil
+}
 
+func (s *ConfigStore) UpdateConfig(cfg Config) (bool, error) {
+	// Check if file exists or not
+	_, err := os.Stat(s.configPath)
+	if err != nil {
+		// Create new file if it doesn't exist
+		f, err := os.Create(s.configPath)
+		if err != nil {
+			return false, fmt.Errorf("failed to create config file: %w", err)
+		}
+		f.Close()
+	}
+
+	// Update the config file
+	rawJSON, _ := json.MarshalIndent(cfg, "", " ")
+	_ = ioutil.WriteFile(s.configPath, rawJSON, 0644)
+
+	return true, nil
 }
