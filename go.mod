@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/gen2brain/beeep v0.0.0-20230907135156-1a38885a97fc
+	github.com/sirupsen/logrus v1.9.3
 	github.com/wailsapp/wails/v2 v2.6.0
 )
 

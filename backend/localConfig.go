@@ -16,12 +16,14 @@ const CONFIG_FILE_LOCATION = "config.json"
 
 // Config setup
 type Config struct {
-	ServerURL string `json:"serverUrl"`
+	LibraryPath string `json:"LibraryPath"`
+	LogLevel    string `json:"LogLevel"`
 }
 
 func DefaultConfig() Config {
 	return Config{
-		ServerURL: "https://api.example.com",
+		LibraryPath: "",
+		LogLevel:    "debug",
 	}
 }
 

@@ -5,8 +5,7 @@ import (
 
 	"Mume/backend"
 
-	"fmt"
-
+	"github.com/sirupsen/logrus"
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
@@ -14,24 +13,35 @@ import (
 
 //go:embed all:frontend/dist
 var assets embed.FS
+var logger = backend.Logger
 
 func main() {
-
 	// Load/create config file
 	store, err := backend.NewConfigStore()
 	if err != nil {
-		fmt.Errorf("could not initialize the config store: %v\n", err)
+		logger.Panicf("Could not initialize the config store: %v", err)
 		return
 	}
-	fmt.Printf("Config path found to be: %v\n", store)
+	logger.Debugf("Config path found to be: %v", store)
 
 	// Read existing values
 	cfg, err := store.Config()
 	if err != nil {
-		fmt.Errorf("Could not retrieve the configuration: %v\n", err)
+		logger.Panicf("Could not retrieve the configuration: %v from config path %v", err, store)
 		return
 	}
-	fmt.Printf("config: %v\n", cfg)
+
+	// Set loglevel
+	switch cfg.LogLevel {
+	case "DEBUG":
+		logger.SetLevel(logrus.DebugLevel)
+	case "INFO":
+		logger.SetLevel(logrus.InfoLevel)
+	case "WARN":
+		logger.SetLevel(logrus.WarnLevel)
+	case "ERROR":
+		logger.SetLevel(logrus.ErrorLevel)
+	}
 
 	// Bases on the config file, launch the app
 
