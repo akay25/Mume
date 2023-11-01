@@ -2,9 +2,9 @@ package backend
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/gen2brain/beeep"
+	rt "github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 // Go/system based functions
@@ -23,7 +23,7 @@ func (a *App) Greet(name string) string {
 
 func (a *App) CloseMe() {
 	a.Shutdown(a.ctx)
-	os.Exit(0)
+	rt.Quit(a.ctx)
 }
 
 func (a *App) Notify(title string, body string, imagePath string) {

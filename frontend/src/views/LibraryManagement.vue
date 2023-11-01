@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+
 import ProductService from '@/service/ProductService';
 
 const picklistValue = ref([
@@ -55,12 +56,22 @@ const onSortChange = (event) => {
     sortKey.value = sortValue;
   }
 };
+
+const addDirectoryToLibrary = async () => {
+  console.log("Opening dialog box");
+  const res = await window.go.main.App.OpenDirectoryDialog({
+    defaultDirectory: "/",
+    title: "Please select a folder to save Top and Bot CAD files..."
+  });
+  console.log("selected directory is: ", res);
+}
 </script>
 
 <template>
   <div class="content-container">
     <div class="content-header">
       <span class="header">Library</span>
+      <button @click="addDirectoryToLibrary">click me</button>
     </div>
     <div class="content-body">
       <DataView :value="dataviewValue" :layout="layout" :paginator="true" :rows="9" :sortOrder="sortOrder"
