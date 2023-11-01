@@ -25,7 +25,7 @@ func main() {
 	logger.Debugf("Config path found to be: %v", store)
 
 	// Read existing values
-	cfg, err := store.Config()
+	cfg, err := store.GetConfig()
 	if err != nil {
 		logger.Panicf("Could not retrieve the configuration: %v from config path %v", err, store)
 		return

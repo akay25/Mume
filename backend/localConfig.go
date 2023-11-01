@@ -16,6 +16,8 @@ const CONFIG_FILE_LOCATION = "config.json"
 const MIN_WINDOW_WIDTH = 1000
 const MIN_WINDOW_HEIGHT = 563
 
+var CONFIG_FILE_PATH = fmt.Sprintf("%s/%s", APPLICATION_NAME, CONFIG_FILE_LOCATION)
+
 // Config setup
 type Config struct {
 	LibraryPath  string `json:"LibraryPath"`
@@ -38,7 +40,7 @@ type ConfigStore struct {
 }
 
 func NewConfigStore() (*ConfigStore, error) {
-	configFilePath, err := xdg.ConfigFile(fmt.Sprintf("%s/%s", APPLICATION_NAME, CONFIG_FILE_LOCATION))
+	configFilePath, err := xdg.ConfigFile(CONFIG_FILE_PATH)
 	if err != nil {
 		return nil, fmt.Errorf("could not resolve path for config file: %w", err)
 	}
@@ -48,7 +50,7 @@ func NewConfigStore() (*ConfigStore, error) {
 	}, nil
 }
 
-func (s *ConfigStore) Config() (Config, error) {
+func (s *ConfigStore) GetConfig() (Config, error) {
 	_, err := os.Stat(s.configPath)
 	if os.IsNotExist(err) {
 		return DefaultConfig(), nil
