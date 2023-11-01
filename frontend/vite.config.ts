@@ -10,7 +10,7 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
-        '@wailsjs':  fileURLToPath(new URL('./wailsjs/go/main/App.js', import.meta.url)),
+        '@wailsjs':  fileURLToPath(new URL('./wailsjs/go/backend/App.js', import.meta.url)),
       }
     }
   }
