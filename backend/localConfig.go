@@ -8,16 +8,21 @@ import (
 	"os"
 	"path/filepath"
 
+	"Mume/backend/database"
+
 	"github.com/adrg/xdg"
+	"gorm.io/gorm"
 )
 
 // TODO: Setup default config values here
 const APPLICATION_NAME = "Mume"
 const CONFIG_FILE_LOCATION = "config.json"
+const SQLITE_DB_PATH = "mume.db"
 const MIN_WINDOW_WIDTH = 1000
 const MIN_WINDOW_HEIGHT = 563
 
 var CONFIG_FILE_PATH = fmt.Sprintf("%s/%s", APPLICATION_NAME, CONFIG_FILE_LOCATION)
+var DB_FILE_PATH = fmt.Sprintf("%s/%s", APPLICATION_NAME, SQLITE_DB_PATH)
 var logger = Logger
 
 // Config setup
@@ -102,4 +107,19 @@ func (s *ConfigStore) UpdateConfig(cfg Config) (bool, error) {
 	_ = ioutil.WriteFile(s.configPath, rawJSON, 0644)
 
 	return true, nil
+}
+
+// Database functions
+func ConnectToDB() (db *gorm.DB, err error) {
+	// Load value from xdg config
+	dbFilePath, err := xdg.ConfigFile(DB_FILE_PATH)
+	if err != nil {
+		return nil, fmt.Errorf("could not resolve path for database file: %w", err)
+	}
+
+	dbconn, err := database.ConnectToDB(dbFilePath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to connect to database: %w at %s", err, DB_FILE_PATH)
+	}
+	return dbconn, nil
 }
