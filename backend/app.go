@@ -10,12 +10,17 @@ import (
 
 // App struct
 type App struct {
-	ctx context.Context
+	ctx      context.Context
+	cfg      *Config
+	cfgStore *ConfigStore
 }
 
 // NewApp creates a new App application struct
-func NewApp() *App {
-	return &App{}
+func NewApp(cfg *Config, store *ConfigStore) *App {
+	app := &App{}
+	app.cfg = cfg
+	app.cfgStore = store
+	return app
 }
 
 // startup is called when the app starts. The context is saved
@@ -24,12 +29,31 @@ func (a *App) StartUp(ctx context.Context) {
 	a.ctx = ctx
 }
 
+func (a *App) GetConfig() *Config {
+	return a.cfg
+}
+
+func (a *App) updateConfig() {
+	a.cfgStore.UpdateConfig(*a.cfg)
+}
+
+func (a *App) Shutdown(ctx context.Context) {
+	a.cfg.WindowHeight = 500
+	a.updateConfig()
+}
+
+func (a *App) BeforeClose(ctx context.Context) (prevent bool) {
+	a.Shutdown(ctx)
+	return false
+}
+
 // Go/system based functions
 func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
 func (a *App) CloseMe() {
+	a.Shutdown(a.ctx)
 	os.Exit(0)
 }
 

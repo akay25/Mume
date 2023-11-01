@@ -10,6 +10,10 @@ export function CloseMe() {
   return window['go']['backend']['App']['CloseMe']();
 }
 
+export function GetConfig() {
+  return window['go']['backend']['App']['GetConfig']();
+}
+
 export function Greet(arg1) {
   return window['go']['backend']['App']['Greet'](arg1);
 }

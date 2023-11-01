@@ -7,6 +7,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/wailsapp/wails/v2"
+	wailsLogger "github.com/wailsapp/wails/v2/pkg/logger"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 )
@@ -46,23 +47,29 @@ func main() {
 	// Bases on the config file, launch the app
 
 	// Create an instance of the app structure
-	app := backend.NewApp()
+	app := backend.NewApp(&cfg, store)
 
 	// Create application with options
 	err = wails.Run(&options.App{
-		Title:     backend.APPLICATION_NAME,
-		Width:     cfg.WindowWidth,
-		Height:    cfg.WindowHeight,
-		MinWidth:  backend.MIN_WINDOW_WIDTH,
-		MinHeight: backend.MIN_WINDOW_HEIGHT,
-		Frameless: true,
-		AssetServer: &assetserver.Options{
-			Assets: assets,
-		},
-		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
-		OnStartup:        app.StartUp,
+		Title:                    backend.APPLICATION_NAME,
+		Width:                    cfg.WindowWidth,
+		Height:                   cfg.WindowHeight,
+		MinWidth:                 backend.MIN_WINDOW_WIDTH,
+		MinHeight:                backend.MIN_WINDOW_HEIGHT,
+		Frameless:                true,
+		LogLevel:                 wailsLogger.INFO,
+		LogLevelProduction:       wailsLogger.ERROR,
+		BackgroundColour:         &options.RGBA{R: 27, G: 38, B: 54, A: 1},
+		EnableDefaultContextMenu: false,
+		OnStartup:                app.StartUp,
+		// OnDomReady:               app.DomReady,
+		OnShutdown:    app.Shutdown,
+		OnBeforeClose: app.BeforeClose,
 		Bind: []interface{}{
 			app,
+		},
+		AssetServer: &assetserver.Options{
+			Assets: assets,
 		},
 	})
 
