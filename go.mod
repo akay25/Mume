@@ -8,6 +8,7 @@ require (
 )
 
 require (
+	github.com/adrg/xdg v0.4.0 // indirect
 	github.com/bep/debounce v1.2.1 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4 // indirect
