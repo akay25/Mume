@@ -62,9 +62,9 @@ func main() {
 		BackgroundColour:         &options.RGBA{R: 27, G: 38, B: 54, A: 1},
 		EnableDefaultContextMenu: false,
 		OnStartup:                app.StartUp,
-		// OnDomReady:               app.DomReady,
-		OnShutdown:    app.Shutdown,
-		OnBeforeClose: app.BeforeClose,
+		OnDomReady:               app.DomReady,
+		OnShutdown:               app.Shutdown,
+		OnBeforeClose:            app.BeforeClose,
 		Bind: []interface{}{
 			app,
 		},
